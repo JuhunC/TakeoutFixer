@@ -1,0 +1,83 @@
+{
+    "name": "takeout-fixer",
+    "displayName": "Takeout Fixer",
+    "description": "Apply Google Takeout metadata to source media files",
+    "version": "0.0.1",
+    "publisher": "takeout-fixer",
+    "icon": "icon.png",
+    "engines": {
+        "vscode": "^1.85.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "keywords": [
+        "google",
+        "takeout",
+        "photos",
+        "metadata",
+        "exif",
+        "gps",
+        "restore"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/yourusername/takeout-fixer"
+    },
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "takeout-fixer.processFiles",
+                "title": "Takeout Fixer: Process Google Takeout Files"
+            },
+            {
+                "command": "takeout-fixer.selectTakeoutFolder",
+                "title": "Takeout Fixer: Select Takeout Folder"
+            },
+            {
+                "command": "takeout-fixer.processCurrentFolder",
+                "title": "Takeout Fixer: Process Current Folder"
+            }
+        ],
+        "configuration": {
+            "title": "Takeout Fixer",
+            "properties": {
+                "takeoutFixer.outputFolder": {
+                    "type": "string",
+                    "default": "",
+                    "description": "Output folder for processed files (leave empty to process in-place)"
+                },
+                "takeoutFixer.preserveOriginals": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Keep original files when processing"
+                },
+                "takeoutFixer.organizeByDate": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Organize files into folders by date (YYYY/MM)"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile && npm run lint",
+        "lint": "eslint src --ext ts",
+        "test": "node ./out/test/runTest.js"
+    },
+    "devDependencies": {
+        "@types/node": "^20.x",
+        "@types/vscode": "^1.85.0",
+        "@typescript-eslint/eslint-plugin": "^6.13.0",
+        "@typescript-eslint/parser": "^6.13.0",
+        "eslint": "^8.54.0",
+        "typescript": "^5.3.0"
+    },
+    "dependencies": {
+        "exiftool-vendored": "^25.0.0"
+    }
+}
