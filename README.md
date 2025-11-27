@@ -2,20 +2,45 @@
 
 A Visual Studio Code extension that processes Google Takeout data and applies metadata to media files.
 
+## ✨ New: Beautiful Web UI!
+
+The extension now features a **modern, intuitive web interface** with:
+- 🎨 Beautiful gradient design with glassmorphism effects
+- 📊 Real-time progress tracking with statistics
+- 📋 Live activity log showing all operations
+- ⚠️ Dedicated error tracking for unhandled cases
+- ⚙️ Easy folder selection and option configuration
+
+**Just run `Takeout Fixer: Open UI` from the command palette!**
+
 ## Features
 
+- **Modern Web UI**: Beautiful interface for easy configuration and monitoring
 - **Automatic Metadata Detection**: Scans Google Takeout folders for media files and their corresponding `.json` or `.supplemental-metadata.json` files
 - **EXIF Data Application**: Applies metadata from JSON files to the actual media files including:
   - Date/Time (PhotoTakenTime, CreationTime)
   - GPS coordinates (latitude, longitude, altitude)
   - Title and Description
   - People tags (as keywords)
+- **Real-Time Progress**: Live progress tracking with detailed statistics
+- **Error Tracking**: See exactly which files had issues and why
 - **Flexible Organization**: 
   - Option to organize files by date (YYYY/MM folder structure)
   - Preserve original files or process in-place
   - Custom output folder support
 
 ## Usage
+
+### Quick Start with UI (Recommended)
+
+1. Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac)
+2. Type "Takeout Fixer: Open UI"
+3. Select your Takeout folder
+4. Configure options (preserve originals, organize by date)
+5. Click "Start Processing"
+6. Monitor progress in real-time!
+
+See **[UI_GUIDE.md](UI_GUIDE.md)** for detailed UI documentation.
 
 ### Commands
 
@@ -113,7 +138,7 @@ The extension reads and applies the following metadata from Google Takeout JSON 
 
 - `photoTakenTime.timestamp` → EXIF DateTimeOriginal, CreateDate
 - `creationTime.timestamp` → EXIF DateTimeOriginal, CreateDate (fallback)
-- `geoData.latitude/longitude` → EXIF GPS coordinates
+- `geoData.latitude/longitude` → EkXIF GPS coordinates
 - `geoDataExif.latitude/longitude` → EXIF GPS coordinates (preferred)
 - `geoData.altitude` → EXIF GPS altitude
 - `title` → EXIF Title, ImageDescription

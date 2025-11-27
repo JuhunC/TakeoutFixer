@@ -2,6 +2,32 @@
 
 All notable changes to the "Takeout Fixer" extension will be documented in this file.
 
+## [0.0.2] - 2025-11-25
+
+### Added - Major UI Update
+- **Modern Web UI**: Beautiful gradient-based interface with glassmorphism effects
+- **Real-Time Progress Tracking**: Live progress bar and statistics (Total, Processed, Success, Errors)
+- **Activity Log**: Terminal-style log with color-coded entries (Info, Success, Warning, Error)
+- **Error Tracking**: Dedicated "Unhandled Cases" section showing failed files and reasons
+- **Folder Selection**: Easy browse buttons for source and output folders
+- **Visual Options**: Checkbox controls for preserve originals and organize by date
+- **Status Indicators**: Idle, Processing, Complete, and Error states with visual badges
+- **Auto-Scrolling Log**: Automatically shows latest activity
+- **Duplicate Handling**: Automatically renames duplicate files in output
+- New command: "Takeout Fixer: Open UI" (primary interface)
+- All legacy commands now open the UI for consistency
+
+### Changed
+- UI is now the primary way to interact with the extension
+- Progress updates batched every 10 files for better performance
+- Error handling improved with detailed error messages per file
+
+### Technical
+- Added webview.ts for UI HTML/CSS/JavaScript
+- Bidirectional messaging between extension and webview
+- Retained context when webview is hidden
+- Real-time statistics updates
+
 ## [0.0.1] - 2025-11-25
 
 ### Added

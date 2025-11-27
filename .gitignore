@@ -5,3 +5,8 @@ dist
 *.vsix
 .vscode-test
 ProcessedPhotos
+Takeout_result/
+*.heic
+*.jpg
+*.jpeg
+*.movg

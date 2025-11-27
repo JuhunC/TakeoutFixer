@@ -28,6 +28,10 @@
     "contributes": {
         "commands": [
             {
+                "command": "takeout-fixer.openUI",
+                "title": "Takeout Fixer: Open UI"
+            },
+            {
                 "command": "takeout-fixer.processFiles",
                 "title": "Takeout Fixer: Process Google Takeout Files"
             },
@@ -57,6 +61,11 @@
                     "type": "boolean",
                     "default": false,
                     "description": "Organize files into folders by date (YYYY/MM)"
+                },
+                "takeoutFixer.organizeBySource": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Maintain original source folder structure in output"
                 }
             }
         }

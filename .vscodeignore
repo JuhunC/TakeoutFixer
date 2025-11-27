@@ -10,3 +10,10 @@ vsc-extension-quickstart.md
 **/*.ts
 !out/**/*.js
 node_modules
+Takeout/**
+Takeout_result/**
+ProcessedPhotos/**
+*.md
+!README.md
+!CHANGELOG.md
+!LICENSE
