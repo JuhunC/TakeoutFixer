@@ -428,7 +428,7 @@ async function processFile(
     // Apply metadata using exiftool
     const tags: any = {};
 
-    // Helper function to format date for EXIF
+    // Helper function to format date for EXIF with timezone
     function formatDateForExif(timestamp: string): string {
         const date = new Date(parseInt(timestamp) * 1000);
         const year = date.getFullYear();
@@ -437,7 +437,13 @@ async function processFile(
         const hours = String(date.getHours()).padStart(2, '0');
         const minutes = String(date.getMinutes()).padStart(2, '0');
         const seconds = String(date.getSeconds()).padStart(2, '0');
-        return `${year}:${month}:${day} ${hours}:${minutes}:${seconds}`;
+
+        const offset = -date.getTimezoneOffset();
+        const offsetSign = offset >= 0 ? '+' : '-';
+        const offsetHours = String(Math.floor(Math.abs(offset) / 60)).padStart(2, '0');
+        const offsetMinutes = String(Math.abs(offset) % 60).padStart(2, '0');
+
+        return `${year}:${month}:${day} ${hours}:${minutes}:${seconds}${offsetSign}${offsetHours}:${offsetMinutes}`;
     }
 
     // Date/Time
@@ -449,6 +455,17 @@ async function processFile(
         const exifDate = formatDateForExif(metadata.creationTime.timestamp);
         tags.DateTimeOriginal = exifDate;
         tags.CreateDate = exifDate;
+    }
+
+    // Set filesystem creation date
+    // ALWAYS use photoTakenTime as requested.
+    // creationTime is usually upload time, which is not what we want for file creation date.
+    const fsTimestamp = metadata.photoTakenTime?.timestamp;
+    if (fsTimestamp) {
+        const fsDate = formatDateForExif(fsTimestamp);
+        tags.FileCreateDate = fsDate;
+        tags.FileModifyDate = fsDate;
+        // sendToWebview('log', { type: 'info', message: `Setting file date to ${fsDate} for ${fileName}` });
     }
 
     // GPS data
